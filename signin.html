@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Authentication</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a2c2a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4a2c2a;
+            font-weight: 500;
+        }
+        .cart-button, .insist-button {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .cart-button {
+            background-color: #4a2c2a;
+            color: white;
+        }
+        .insist-button {
+            background-color: #d2b48c;
+            color: #4a2c2a;
+        }
+
+
+        /* LOGIN CARD CSS */
+        section{
+            background: url(beans-bg.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: cover;
+            height: 95vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container-login {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .container-login{
+            position: absolute;
+            right: 100px;
+            background: transparent;
+            border: 2px solid black;
+            backdrop-filter: blur(7px);
+
+        }
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .toggle {
+            text-align: center;
+            margin-top: 1rem;
+        }
+        .toggle a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        #error-message {
+            color: red;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #user-info {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+
+        /* FOOTER CSS */
+        .footer {
+        background-color: #f5e6d3;
+        color: #4a2c2a;
+        padding: 50px 0;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .footer-logo {
+        flex: 1;
+        max-width: 200px;
+    }
+    .logo-text {
+        margin-top: 10px;
+        font-size: 24px;
+    }
+    .footer-links {
+        flex: 2;
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer-section {
+        margin-right: 30px;
+    }
+    .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    .footer-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+    .footer-section a {
+        color: #4a2c2a;
+        text-decoration: none;
+    }
+    .footer-cta {
+        flex: 1;
+        text-align: right;
+    }
+    .order-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .zomato {
+        background-color: #cb202d;
+    }
+    .swiggy {
+        background-color: #fc8019;
+    }
+    .open-hours {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .hours-icon {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #4a2c2a;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+        text-align: center;
+        border-top: 1px solid #4a2c2a;
+        padding-top: 20px;
+    }
+    .social-icons {
+        margin-bottom: 15px;
+    }
+    .social-icon {
+        font-size: 20px;
+        margin: 0 10px;
+        color: #4a2c2a;
+    }
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+        }
+        .footer-logo, .footer-links, .footer-cta {
+            flex: 1 1 100%;
+            max-width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .footer-links {
+            flex-direction: column;
+        }
+        .footer-section {
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">ETTāRRA</div>
+                <div class="nav-links">
+                    <a href="main.html">Home</a>
+                    <a href="#">About us</a>
+                    <a href="#">Sign In</a>
+                    <a href="#foot">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <section>
+        <div class="container-login">
+            <h1 id="title">Login</h1>
+            <form id="auth-form">
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit" id="submit-btn">Login</button>
+            </form>
+            <div class="toggle">
+                <a href="signup.html" id="toggle-btn">Don't have an account? Sign up</a>
+            </div>
+            <div id="error-message"></div>
+            <div id="user-info"></div>
+        </div>
+    </section>
+
+
+    <footer class="footer" id="foot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="#1a2b4a"/>
+                        <path d="M30 50 Q 50 20, 70 50 Q 60 70, 50 60 Q 40 70, 30 50" fill="none" stroke="white" stroke-width="2"/>
+                    </svg>
+                    <h2 class="logo-text">ETTāRRA</h2>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Ettarra Insists</a></li>
+                            <li><a href="#">Brew Stories</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Address</h3>
+                        <p>Juhu Residency Boutique Hotel, Mumbai, Maharashtra 400049</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Juhu, Mumbai</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-phone"></i> +91 98256 03145</p>
+                        <p><i class="fas fa-envelope"></i> care@ettarracoffee.in</p>
+                    </div>
+                </div>
+                <div class="footer-cta">
+                    <button class="order-btn zomato">
+                        <i class="fas fa-utensils"></i> Order On Zomato
+                    </button>
+                    <button class="order-btn swiggy">
+                        <i class="fas fa-bicycle"></i> Order On Swiggy
+                    </button>
+                    <div class="open-hours">
+                        <span>Open For Dine-In</span>
+                        <div class="hours-icon">24/7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+                </div>
+                <p>&copy; Ettarra Coffee House 2024. Webworks by Infobahn</p>
+                <p>Registered name: Bunts Hotels Private Limited</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCSsatonj0k4Bme9HQAmH7ce2BUNgV25Bg",
+            authDomain: "ettara-coffee.firebaseapp.com",
+            databaseURL: "https://ettara-coffee-default-rtdb.firebaseio.com",
+            projectId: "ettara-coffee",
+            storageBucket: "ettara-coffee.appspot.com",
+            messagingSenderId: "936196066889",
+            appId: "1:936196066889:web:526891abbf12edc58f3998",
+            measurementId: "G-YW6KXHHN3G"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+        const authForm = document.getElementById('auth-form');
+        const titleElement = document.getElementById('title');
+        const toggleBtn = document.getElementById('toggle-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const errorMessage = document.getElementById('error-message');
+        const userInfo = document.getElementById('user-info');
+
+        let isLoginMode = true;
+
+        authForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (isLoginMode) {
+                auth.signInWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        console.log('User logged in:', userCredential.user);
+                        displayUserInfo(userCredential.user);
+                    })
+                    .catch((error) => {
+                        console.error('Login error:', error);
+                        errorMessage.textContent = error.message;
+                    });
+            } else {
+                auth.createUserWithEmailAndPassword(email, password)
+                    .then((userCredential) => {
+                        console.log('User signed up:', userCredential.user);
+                        displayUserInfo(userCredential.user);
+                    })
+                    .catch((error) => {
+                        console.error('Signup error:', error);
+                        errorMessage.textContent = error.message;
+                    });
+            }
+        });
+
+        function displayUserInfo(user) {
+            authForm.style.display = 'none';
+            toggleBtn.style.display = 'none';
+            errorMessage.textContent = '';
+            userInfo.innerHTML = `
+                <h2>Welcome, ${user.email}</h2>
+                <p>You are now logged in.</p>
+                <button id="logout-btn">Logout</button>
+            `;
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                auth.signOut().then(() => {
+                    console.log('User signed out');
+                    authForm.style.display = 'block';
+                    toggleBtn.style.display = 'block';
+                    userInfo.innerHTML = '';
+                }).catch((error) => {
+                    console.error('Logout error:', error);
+                });
+            });
+        }
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                displayUserInfo(user);
+            } else {
+                authForm.style.display = 'block';
+                toggleBtn.style.display = 'block';
+                userInfo.innerHTML = '';
+            }
+        });
+        
+    </script>
+</body>
+</html>

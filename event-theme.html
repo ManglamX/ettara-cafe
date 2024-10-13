@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVENT</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400..900;1,400..900&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    background-color: #ffffff;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4a2c2a;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #4a2c2a;
+    font-weight: 500;
+}
+
+.cart-button,
+.insist-button {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.cart-button {
+    background-color: #4a2c2a;
+    color: white;
+}
+
+.insist-button {
+    background-color: #d2b48c;
+    color: #4a2c2a;
+}
+
+.footer {
+    background-color: #f5e6d3;
+    color: #4a2c2a;
+    padding: 50px 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-logo {
+    flex: 1;
+    max-width: 200px;
+}
+
+.logo-text {
+    margin-top: 10px;
+    font-size: 24px;
+}
+
+.footer-links {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-section {
+    margin-right: 30px;
+}
+
+.footer-section h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #4a2c2a;
+    text-decoration: none;
+}
+
+.footer-cta {
+    flex: 1;
+    text-align: right;
+}
+
+.order-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.zomato {
+    background-color: #cb202d;
+}
+
+.swiggy {
+    background-color: #fc8019;
+}
+
+.open-hours {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.hours-icon {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #4a2c2a;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.footer-bottom {
+    margin-top: 30px;
+    text-align: center;
+    border-top: 1px solid #4a2c2a;
+    padding-top: 20px;
+}
+
+.social-icons {
+    margin-bottom: 15px;
+}
+
+.social-icon {
+    font-size: 20px;
+    margin: 0 10px;
+    color: #4a2c2a;
+}
+
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+    }
+
+    .footer-logo,
+    .footer-links,
+    .footer-cta {
+        flex: 1 1 100%;
+        max-width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+    }
+
+    .footer-section {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+}
+
+.poster {
+    position: relative;
+}
+
+.poster img {
+    width: 100vw;
+    height: 90vh;
+    object-fit: cover;
+}
+
+.poster .black {
+    width: 100vw;
+    height: 90vh;
+    object-fit: cover;
+    position: absolute;
+    background-color: black;
+    top: 0;
+    opacity: 0.5;
+    z-index: 2;
+}
+
+.poster h1 {
+    font-family: "Alegreya", serif;
+    font-size: 50px;
+    font-weight: 700;
+    position: absolute;
+    color: rgb(233, 232, 187);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.poster p {
+    font-family: "Alegreya", serif;
+    font-size: 18px;
+    position: absolute;
+    color: rgb(233, 232, 187);
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.event-info {
+    max-width: 60vw;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-info-1 p {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.event-info-2 p {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.book-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.book-btn button {
+    margin: 0px auto;
+    border: none;
+    outline: none;
+    padding: 20px 30px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: rgb(210, 180, 140);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+body {
+    position: relative;
+}
+
+.after-booking {
+    position: absolute;
+    top: 10vh;
+    left: 30vw;
+    z-index: 100;
+}
+#booking{
+    display: none;
+}
+.after-booking {
+    min-height: 70vh;
+    width: 40vw;
+    margin: 0px auto;
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#close{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    background-color: #D2B48C;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.booking-info {
+    height: 70vh;
+    width: 30vw;
+}
+
+.after-booking input {
+    padding: 10px;
+    width: 94%;
+}
+
+.booking-info button {
+    border: none;
+    outline: none;
+    padding: 10px;
+    background-color: #D2B48C;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+.btns .Donebtn {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px;
+    border: none;
+    outline: none;
+}
+
+
+
+
+
+
+
+
+
+/* SEAT BOOKING  */
+h1, h2 {
+    text-align: center;
+    color: #4a2c2a;
+}
+.seating-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.table {
+    width: 60px;
+    height: 60px;
+    margin: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #4a2c2a;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.table:hover {
+    transform: scale(1.1);
+}
+.table.booked {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.table.selected {
+    background-color: #4a2c2a;
+    color: white;
+}
+.barista-counter {
+    width: 40%;
+    height: 30px;
+    background-color: #4a2c2a;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+.legend {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+.legend-color {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border: 1px solid #4a2c2a;
+}
+#selectedTable {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+}
+#bookButton {
+    display: block;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #4a2c2a;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.container-seat{
+    width: 50vw;
+    height: 95vh;
+    border: 2px solid black;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    background-color: #d2b48c;
+    z-index: 1000;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.btns{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.btns #Donebtn {
+    padding: 11px;
+    border: none;
+    background-color: #4A2B2A;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 50px;
+}
+</style>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">ETTāRRA</div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">Shop</a>
+                    <a href="#">About us</a>
+                    <a href="#">Brew Stories</a>
+                    <a href="#">Contact us</a>
+                </div>
+                <div>
+                    <button class="cart-button">₹0.00 (0)</button>
+                    <button class="insist-button">Ettarra Insists</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section>
+        <div class="poster">
+            <img src="poster-bg-transformed.jpeg" alt="">
+            <div class="black"></div>
+            <h1>Indoor Garden Theme</h1>
+            <p>Join us for a special "Inner Garden Café" supper event, where nature meets culinary delight! Enjoy a
+                serene dining experience surrounded by lush greenery, twinkling fairy lights, and cozy seating amidst
+                the ambiance of a hidden garden. Savor gourmet dishes inspired by fresh, organic ingredients in this
+                enchanting, nature-themed setting.</p>
+
+        </div>
+    </section>
+
+    <section>
+        <div class="event-info">
+            <div class="event-info-1">
+                <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
+                        fill="none">
+                        <path
+                            d="M13.6177 21.367C13.1841 21.773 12.6044 22 12.0011 22C11.3978 22 10.8182 21.773 10.3845 21.367C6.41302 17.626 1.09076 13.4469 3.68627 7.37966C5.08963 4.09916 8.45834 2 12.0011 2C15.5439 2 18.9126 4.09916 20.316 7.37966C22.9082 13.4393 17.599 17.6389 13.6177 21.367Z"
+                            stroke="currentColor" stroke-width="1.5" />
+                        <path
+                            d="M15.5 11C15.5 12.933 13.933 14.5 12 14.5C10.067 14.5 8.5 12.933 8.5 11C8.5 9.067 10.067 7.5 12 7.5C13.933 7.5 15.5 9.067 15.5 11Z"
+                            stroke="currentColor" stroke-width="1.5" />
+                    </svg>Boutique hotel, Ground floor, Juhu residency, Mumbai,<br> Maharashtra 400049, India</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
+                        fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M12 8V12L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg> Time: 5PM - 10PM</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
+                        fill="none">
+                        <path
+                            d="M16 14C16 14.8284 16.6716 15.5 17.5 15.5C18.3284 15.5 19 14.8284 19 14C19 13.1716 18.3284 12.5 17.5 12.5C16.6716 12.5 16 13.1716 16 14Z"
+                            stroke="currentColor" stroke-width="1.5" />
+                        <path
+                            d="M18.9 8C18.9656 7.67689 19 7.34247 19 7C19 4.23858 16.7614 2 14 2C11.2386 2 9 4.23858 9 7C9 7.34247 9.03443 7.67689 9.10002 8"
+                            stroke="currentColor" stroke-width="1.5" />
+                        <path
+                            d="M7 7.99324H16C18.8284 7.99324 20.2426 7.99324 21.1213 8.87234C22 9.75145 22 11.1663 22 13.9961V15.9971C22 18.8269 22 20.2418 21.1213 21.1209C20.2426 22 18.8284 22 16 22H10C6.22876 22 4.34315 22 3.17157 20.8279C2 19.6557 2 17.7692 2 13.9961V11.9952C2 8.22211 2 6.33558 3.17157 5.16344C4.11466 4.2199 5.52043 4.03589 8 4H10"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    </svg> 2100/person</p>
+            </div>
+            <div class="event-info-2">
+                <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        style="fill: rgba(0, 0, 0, 1)">
+                        <path
+                            d="M7 19.66V21a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1.34A10 10 0 0 0 22 11a1 1 0 0 0-1-1 3.58 3.58 0 0 0-1.8-3 3.66 3.66 0 0 0-3.63-3.13 3.86 3.86 0 0 0-1 .13 3.7 3.7 0 0 0-5.11 0 3.86 3.86 0 0 0-1-.13A3.66 3.66 0 0 0 4.81 7 3.58 3.58 0 0 0 3 10a1 1 0 0 0-1 1 10 10 0 0 0 5 8.66zm-.89-11 .83-.26-.16-.9a1.64 1.64 0 0 1 1.66-1.62 1.78 1.78 0 0 1 .83.2l.81.45.5-.77a1.71 1.71 0 0 1 2.84 0l.5.77.81-.45a1.78 1.78 0 0 1 .83-.2 1.65 1.65 0 0 1 1.67 1.6l-.16.85.82.28A1.59 1.59 0 0 1 19 10H5a1.59 1.59 0 0 1 1.11-1.39zM19.94 12a8 8 0 0 1-4.39 6.16 1 1 0 0 0-.55.9V20H9v-.94a1 1 0 0 0-.55-.9A8 8 0 0 1 4.06 12z">
+                        </path>
+                    </svg>Food</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
+                        fill="none">
+                        <path
+                            d="M15.3979 4.40951C15.9703 4.02542 16.659 3.80138 17.4 3.80138C19.3882 3.80138 21 5.4144 21 7.40415C21 9.31828 19.5084 10.8838 17.625 11H17M15.3979 4.40951C14.9058 3.0062 13.5703 2 12 2C10.4297 2 9.09418 3.0062 8.60215 4.40951M15.3979 4.40951C15.5288 4.78297 15.6 5.18455 15.6 5.60277C15.6 5.91378 15.5606 6.21558 15.4866 6.50346M9.71838 5.60277C9.44207 5.12473 9.05914 4.71612 8.60215 4.40951M8.60215 4.40951C8.02968 4.02543 7.34099 3.80138 6.6 3.80138C4.61177 3.80138 3 5.4144 3 7.40415C3 9.31828 4.49159 10.8838 6.375 11H7"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M17 14V10M7 14V10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M18 14.5C16.401 13.8776 14.3005 13.5 12 13.5C9.69952 13.5 7.59905 13.8776 6 14.5"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                        <path d="M17 17C17 19.7614 14.7614 22 12 22C9.23858 22 7 19.7614 7 17" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" />
+                    </svg> Chefs</p>
+                <p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000"
+                        fill="none">
+                        <path
+                            d="M7 18V11.5C7 10.6716 6.32843 10 5.5 10C4.67157 10 4 10.6716 4 11.5V16C4 17.1046 4.89543 18 6 18H7Z"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M20 16V11.5C20 10.6716 19.3284 10 18.5 10C17.6716 10 17 10.6716 17 11.5V18H18C19.1046 18 20 17.1046 20 16Z"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M17 14H7V18H17V14Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M14.5 22H9.5V18H14.5V22Z" stroke="currentColor" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M7 22H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path
+                            d="M18.5 10V8C18.5 5.17157 18.5 3.75736 17.6213 2.87868C16.7426 2 15.3284 2 12.5 2H11.5C8.67157 2 7.25736 2 6.37868 2.87868C5.5 3.75736 5.5 5.17157 5.5 8V10"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg> Seating Layout </p>
+            </div>
+        </div>
+        <div class="book-btn">
+            <button id="btn">Book Now!</button>
+        </div>
+    </section>
+    <section id="booking">
+        <div class="after-booking" >
+            <button id="close">Close</button>
+            <h2>Enter your details</h2>
+            <div class="booking-info">
+                <p>Name:</p>
+                <input type="text" placeholder="Enter your name">
+                <p>Enter your Email:</p>
+                <input type="email" placeholder="Enter your Email">
+                <p>Enter your contact number:</p>
+                <input type="number" placeholder="Contact number">
+                <p>Age:</p>
+                <input type="number" placeholder="Enter your age">
+                <p>Number of people:</p>
+                <input type="number" placeholder="Enter your age"> <br>
+                <div class="btns">
+                    <button id="seat-select">Select Seats-</button>
+                    <button >Confirm</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seat Booking System -->
+     <div class="container-seat" id="container-seatt">
+         <h1>Ettarra Coffee Table Booking</h1>
+         
+         <div class="seating-area">
+             <h2>PREMIUM Area - ₹500 per person</h2>
+             <div class="row">
+                 <div class="table" data-id="A1" data-seats="4">A1</div>
+                 <div class="table" data-id="A2" data-seats="4">A2</div>
+                 <div class="table booked" data-id="A3" data-seats="4">A3</div>
+                 <div class="table" data-id="A4" data-seats="4">A4</div>
+             </div>
+             <div class="row">
+                 <div class="table" data-id="B1" data-seats="2">B1</div>
+                 <div class="table" data-id="B2" data-seats="2">B2</div>
+                 <div class="table" data-id="B3" data-seats="2">B3</div>
+                 <div class="table booked" data-id="B4" data-seats="2">B4</div>
+             </div>
+         </div>
+     
+         <div class="seating-area">
+             <h2>STANDARD Area - ₹300 per person</h2>
+             <div class="row">
+                 <div class="table" data-id="C1" data-seats="6">C1</div>
+                 <div class="table" data-id="C2" data-seats="6">C2</div>
+                 <div class="table" data-id="C3" data-seats="6">C3</div>
+             </div>
+             <div class="row">
+                 <div class="table booked" data-id="D1" data-seats="4">D1</div>
+                 <div class="table" data-id="D2" data-seats="4">D2</div>
+                 <div class="table" data-id="D3" data-seats="4">D3</div>
+             </div>
+         </div>
+     
+         <div class="barista-counter">Barista Counter</div>
+     
+         <div class="legend">
+             <div class="legend-item">
+                 <div class="legend-color" style="background-color: white;"></div>
+                 <span>Available</span>
+             </div>
+             <div class="legend-item">
+                 <div class="legend-color" style="background-color: #4a2c2a;"></div>
+                 <span>Selected</span>
+             </div>
+             <div class="legend-item">
+                 <div class="legend-color" style="background-color: #ccc;"></div>
+                 <span>Booked</span>
+             </div>
+         </div>
+     
+         <div id="selectedTable"></div>
+         <div class="btns">
+             <button id="bookButton">Book Table</button>
+             <button id="Donebtn">Done</button>
+         </div>
+     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="#1a2b4a" />
+                        <path d="M30 50 Q 50 20, 70 50 Q 60 70, 50 60 Q 40 70, 30 50" fill="none" stroke="white"
+                            stroke-width="2" />
+                    </svg>
+                    <h2 class="logo-text">ETTāRRA</h2>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Ettarra Insists</a></li>
+                            <li><a href="#">Brew Stories</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Address</h3>
+                        <p>Juhu Residency Boutique Hotel, Mumbai, Maharashtra 400049</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Juhu, Mumbai</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-phone"></i> +91 98256 03145</p>
+                        <p><i class="fas fa-envelope"></i> care@ettarracoffee.in</p>
+                    </div>
+                </div>
+                <div class="footer-cta">
+                    <button class="order-btn zomato">
+                        <i class="fas fa-utensils"></i> Order On Zomato
+                    </button>
+                    <button class="order-btn swiggy">
+                        <i class="fas fa-bicycle"></i> Order On Swiggy
+                    </button>
+                    <div class="open-hours">
+                        <span>Open For Dine-In</span>
+                        <div class="hours-icon">24/7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+                </div>
+                <p>&copy; Ettarra Coffee House 2024. Webworks by Infobahn</p>
+                <p>Registered name: Bunts Hotels Private Limited</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    document.getElementById("btn").addEventListener("click", function(){
+        const bookingContainer =document.getElementById("booking");
+        bookingContainer.style.display="block";
+    });
+    document.getElementById("close").addEventListener("click",function(){
+        const bookingContainer =document.getElementById("booking");
+        bookingContainer.style.display="none";
+    })
+    document.getElementById("seat-select").addEventListener("click",function(){
+        const seatBooking =document.getElementById("container-seatt");
+        seatBooking.style.display="block";
+    })
+    document.getElementById("Donebtn").addEventListener("click", function(){
+        const exitSeat = document.getElementById("container-seatt");
+        exitSeat.style.display="none";
+    })
+    const tables = document.querySelectorAll('.table');
+        const selectedTableDiv = document.getElementById('selectedTable');
+        const bookButton = document.getElementById('bookButton');
+        let selectedTable = null;
+
+        tables.forEach(table => {
+            table.addEventListener('click', () => {
+                if (!table.classList.contains('booked')) {
+                    if (selectedTable) {
+                        selectedTable.classList.remove('selected');
+                    }
+                    selectedTable = table;
+                    table.classList.add('selected');
+                    const tableId = table.dataset.id;
+                    const seats = table.dataset.seats;
+                    selectedTableDiv.textContent = `Selected: Table ${tableId} (${seats} seats)`;
+                    bookButton.style.display = 'block';
+                }
+            });
+        });
+
+        bookButton.addEventListener('click', () => {
+            if (selectedTable) {
+                const tableId = selectedTable.dataset.id;
+                alert(`Booking confirmed for Table ${tableId}`);
+                selectedTable.classList.remove('selected');
+                selectedTable.classList.add('booked');
+                selectedTable = null;
+                selectedTableDiv.textContent = '';
+                bookButton.style.display = 'none';
+            }
+        });
+</script>
+
+
+
+</html>

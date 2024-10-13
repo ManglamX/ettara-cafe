@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ettarra Coffee House - Upcoming Events</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a2c2a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4a2c2a;
+            font-weight: 500;
+        }
+        .cart-button, .insist-button {
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .cart-button {
+            background-color: #4a2c2a;
+            color: white;
+        }
+        .insist-button {
+            background-color: #d2b48c;
+            color: #4a2c2a;
+        }
+        .featured-event {
+            height: 100vh;
+            background-image: url("signup-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .featured-event::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .featured-event-content {
+            position: relative;
+            z-index: 1;
+        }
+        .featured-event-content button a{
+            text-decoration: none;
+            color: black;
+        }
+        .featured-event h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .featured-event p {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .featured-event button {
+            background-color: #d2b48c;
+            color: #4a2c2a;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .event-list {
+            padding: 50px 0;
+        }
+        .event-list h2 {
+            text-align: center;
+            color: #4a2c2a;
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        .event-card button{
+            background-color: #d2b48c;
+            color: #4a2c2a;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .event-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .event-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .event-card-content {
+            padding: 20px;
+        }
+        .event-card h3 {
+            color: #4a2c2a;
+            margin-bottom: 10px;
+        }
+        .event-card p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .featured-event h1 {
+                font-size: 2rem;
+            }
+        }
+
+
+
+
+    .special-delights {
+        background-color: #f9f3e9;
+        padding: 60px 0;
+        border-top: 2px solid #d2b48c;
+        border-bottom: 2px solid #d2b48c;
+    }
+
+    .section-title {
+        text-align: center;
+        font-family: 'Georgia', serif;
+        font-size: 2.5rem;
+        color: #4a2c2a;
+        margin-bottom: 40px;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .delights-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+    }
+
+    .delight-item {
+        background-color: #fff;
+        border: 1px solid #d2b48c;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .delight-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .delight-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #d2b48c;
+    }
+
+    .delight-item h3 {
+        font-family: 'Georgia', serif;
+        font-size: 1.5rem;
+        color: #4a2c2a;
+        margin: 15px 0 10px;
+        padding: 0 15px;
+        text-align: center;
+    }
+
+    .delight-item p {
+        font-family: 'Arial', sans-serif;
+        font-size: 0.9rem;
+        color: #6c5648;
+        margin-bottom: 15px;
+        padding: 0 15px;
+        text-align: center;
+        font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .delights-grid {
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        }
+    }
+
+
+        .footer {
+        background-color: #f5e6d3;
+        color: #4a2c2a;
+        padding: 50px 0;
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    .footer-logo {
+        flex: 1;
+        max-width: 200px;
+    }
+    .logo-text {
+        margin-top: 10px;
+        font-size: 24px;
+    }
+    .footer-links {
+        flex: 2;
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer-section {
+        margin-right: 30px;
+    }
+    .footer-section h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    .footer-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+    .footer-section a {
+        color: #4a2c2a;
+        text-decoration: none;
+    }
+    .footer-cta {
+        flex: 1;
+        text-align: right;
+    }
+    .order-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .zomato {
+        background-color: #cb202d;
+    }
+    .swiggy {
+        background-color: #fc8019;
+    }
+    .open-hours {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-top: 20px;
+    }
+    .hours-icon {
+        width: 50px;
+        height: 50px;
+        border: 2px solid #4a2c2a;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 10px;
+        font-weight: bold;
+    }
+    .footer-bottom {
+        margin-top: 30px;
+        text-align: center;
+        border-top: 1px solid #4a2c2a;
+        padding-top: 20px;
+    }
+    .social-icons {
+        margin-bottom: 15px;
+    }
+    .social-icon {
+        font-size: 20px;
+        margin: 0 10px;
+        color: #4a2c2a;
+    }
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+        }
+        .footer-logo, .footer-links, .footer-cta {
+            flex: 1 1 100%;
+            max-width: 100%;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .footer-links {
+            flex-direction: column;
+        }
+        .footer-section {
+            margin-right: 0;
+            margin-bottom: 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">ETTāRRA</div>
+                <div class="nav-links">
+                    <a href="#">Home</a>
+                    <a href="#">About us</a>
+                    <a href="signin.html">Sign In</a>
+                    <a href="#foot">Contact us</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="featured-event">
+        <div class="featured-event-content">
+            <h1>South Indian Coffee Tasting Night</h1>
+            <p>Date: October 15, 2023</p>
+            <p>Time: 7:00 PM - 10:00 PM</p>
+            <button><a href="event1.html">Learn More</a></button>
+        </div>
+    </div>
+
+    <div class="event-list">
+        <div class="container">
+            <h2 id="upcoming">Upcoming Supper Events</h2>
+            <div class="event-cards">
+                <div class="event-card">
+                    <img src="https://fxvvfpvtjgvfzwgmgwsj.supabase.co/storage/v1/object/public/images/brew-master.jpg" alt="Brew Master's Workshop">
+                    <div class="event-card-content">
+                        <h3>Brew Master's Workshop</h3>
+                        <p>Date: October 22, 2023</p>
+                        <p>Time: 6:30 PM - 8:30 PM</p>
+                        <p>Learn the art of coffee brewing from our expert Brew Master. Hands-on experience with various brewing methods.</p>
+                        <button>Learn More</button>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <img src="https://fxvvfpvtjgvfzwgmgwsj.supabase.co/storage/v1/object/public/images/coffee-jazz.jpg" alt="Coffee and Jazz Night">
+                    <div class="event-card-content">
+                        <h3>Coffee and Jazz Night</h3>
+                        <p>Date: November 5, 2023</p>
+                        <p>Time: 8:00 PM - 11:00 PM</p>
+                        <p>Enjoy a relaxing evening of smooth jazz and our signature coffee blends. Special menu available.</p>
+                        <button>Learn More</button>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <img src="https://fxvvfpvtjgvfzwgmgwsj.supabase.co/storage/v1/object/public/images/latte-art.jpg" alt="Latte Art Competition">
+                    <div class="event-card-content">
+                        <h3>Latte Art Competition</h3>
+                        <p>Date: November 19, 2023</p>
+                        <p>Time: 3:00 PM - 6:00 PM</p>
+                        <p>Watch local baristas compete in creating stunning latte art. Audience participation and tasting included.</p>
+                        <button>Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="special-delights">
+        <div class="container">
+            <h2 class="section-title">Our Special Delights</h2>
+            <div class="delights-grid">
+                <div class="delight-item">
+                    <img src="Coffee.png">
+                    <h3>Artisanal Coffee</h3>
+                    <p>Handcrafted perfection in every cup</p>
+                </div>
+                <div class="delight-item">
+                    <img src="cookies.png">
+                    <h3>Homemade Cookies</h3>
+                    <p>Baked with love and tradition</p>
+                </div>
+                <div class="delight-item">
+                    <img src="bread.png">
+                    <h3>Artisan Bread</h3>
+                    <p>Crusty, aromatic, and simply divine</p>
+                </div>
+                <div class="delight-item">
+                    <img src="frappe.jpg" alt="Signature Frappe">
+                    <h3>Signature Frappe</h3>
+                    <p>A cool blend of flavors and indulgence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer" id="foot">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="100" height="100" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="40" fill="#1a2b4a"/>
+                        <path d="M30 50 Q 50 20, 70 50 Q 60 70, 50 60 Q 40 70, 30 50" fill="none" stroke="white" stroke-width="2"/>
+                    </svg>
+                    <h2 class="logo-text">ETTāRRA</h2>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-section">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Ettarra Insists</a></li>
+                            <li><a href="#">Brew Stories</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Address</h3>
+                        <p>Juhu Residency Boutique Hotel, Mumbai, Maharashtra 400049</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Juhu, Mumbai</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Contact</h3>
+                        <p><i class="fas fa-phone"></i> +91 98256 03145</p>
+                        <p><i class="fas fa-envelope"></i> care@ettarracoffee.in</p>
+                    </div>
+                </div>
+                <div class="footer-cta">
+                    <button class="order-btn zomato">
+                        <i class="fas fa-utensils"></i> Order On Zomato
+                    </button>
+                    <button class="order-btn swiggy">
+                        <i class="fas fa-bicycle"></i> Order On Swiggy
+                    </button>
+                    <div class="open-hours">
+                        <span>Open For Dine-In</span>
+                        <div class="hours-icon">24/7</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-spotify"></i></a>
+                </div>
+                <p>&copy; Ettarra Coffee House 2024. Webworks by Infobahn</p>
+                <p>Registered name: Bunts Hotels Private Limited</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+window.embeddedChatbotConfig = {
+chatbotId: "10iYSCn4BgNbeuII9GdM4",
+domain: "www.chatbase.co"
+}
+</script>
+<script
+src="https://www.chatbase.co/embed.min.js"
+chatbotId="10iYSCn4BgNbeuII9GdM4"
+domain="www.chatbase.co"
+defer>
+</script>
+
+</body>
+</html>
